@@ -1,21 +1,9 @@
 <template>
-  <div>
-    <index/>
-  </div>
+  <layout-index />
+  dsfasd
 </template>
 
 <script setup>
-//eslint-disable-next-line
-import index from './layouts/index.vue'
+import LayoutIndex from "./layouts/LayoutIndex.vue";
 </script>
 
-<style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
-</style>

@@ -1,11 +1,11 @@
 <template>
   <div class="min-h-full">
-    <LayoutHeader />
+    <layout-header />
   </div>
 </template>
 
 <script setup>
-import LayoutHeader from "./Layout-Header.vue";
+import LayoutHeader from "./LayoutHeader.vue";
 </script>
 
 <style>
