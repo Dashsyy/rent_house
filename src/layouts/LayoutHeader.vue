@@ -98,6 +98,3 @@ const userNavigation = [
 ]
 </script>
 
-<style>
-
-</style>
