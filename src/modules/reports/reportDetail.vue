@@ -13,4 +13,4 @@ import BaseLayout from "@/components/layout/BaseLayout.vue";
 </script>
 
 <style>
-</style
+</style>
