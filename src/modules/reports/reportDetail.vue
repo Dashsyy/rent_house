@@ -1,7 +1,7 @@
 <template>
-  <base-layout >
+  <base-layout>
     <template v-slot:main>
-      <main class="p-5 text-white"> 
+      <main class="p-5 text-white">
         <h1>Reports</h1>
       </main>
     </template>
@@ -9,10 +9,8 @@
 </template>
 
 <script setup>
-
 import BaseLayout from "@/components/layout/BaseLayout.vue";
 </script>
 
 <style>
-
-</style>
+</style
