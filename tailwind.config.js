@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'sans': ['Comic Neue', 'Open Sans','Helvetica', 'Arial', 'sans-serif']
+    },
     extend: {},
   },
   plugins: [],

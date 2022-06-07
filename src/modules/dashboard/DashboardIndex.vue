@@ -6,11 +6,16 @@
           <h1>Components:</h1>
         </label>
         <!-- <Button name="Submit" @handleSubmit="greeting" /> -->
-        <div class="flex">
-          <Input label="Name" prefix="prefix" suffix="suffix" />
-          <!-- <Input label="Room" prefix="prefix" suffix="suffix" /> -->
-          <!-- <Input label="Due Date" prefix="prefix" suffix="suffix" /> -->
-        </div>
+        <!-- <div class="grid grid-cols-12">
+          <div class="col-span-1"></div>
+          <div class="grid grid-rows-3 inline col-span-10">
+            <Input label="Name" placeholder="Name" prefix="prefix" suffix="suffix" />
+            <Input label="Room" placeholder="Room" prefix="prefix" suffix="suffix" />
+            <Input label="Due Date" placeholder="Due Date" prefix="prefix" suffix="suffix" />
+          </div>
+          <div class="col-span-1"></div>
+        </div> -->
+
         <!-- <TableView :items="[headerData, tableData]" /> -->
       </main>
       <div></div>
