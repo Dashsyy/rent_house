@@ -5,6 +5,7 @@ module.exports = {
   publicPath: process.env.VUE_APP_CDN || '/',
   runtimeCompiler: true,
   transpileDependencies: [],
+  lintOnSave: false,
   configureWebpack: {
     optimization: {
       splitChunks: {
