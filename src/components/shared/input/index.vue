@@ -1,25 +1,25 @@
 <template>
-  <div class="border inline-block p-2">
+  <div class="inline-block p-2">
     <div class="grid grid-cols-4 gap-2">
-      <div class="col-span-1 text-left">
-        <label class="text-black" :for="label">{{ label }}</label>
-      </div>
-      <div class="col-span-3">
+      <div class="col-span-4">
         <input
-          type="text"
+          :type="type ? type : 'text'"
           :placeholder="placeholder"
+          :value="modelValue"
           class="
             text-black
-            text-xl
             mt-1
             px-3
             py-2
             w-full
-            border
-            placeholder-black
-            focus:outline  outline-5 outline-cyan-500
+            bg-[#F1F3F5]
+            placeholder-grey
+            focus:outline
+            outline-1 outline-cyan-500
+            drop-shadow
             rounded-md
           "
+          @input="$emit('update:modelValue', $event.target.value)"
         />
       </div>
     </div>
@@ -27,11 +27,15 @@
 </template>
 
 <script setup>
-defineProps({
+const { computed } = require("@vue/runtime-core");
+const emit = defineEmits(["change", "update:modelValue"]);
+const props = defineProps({
+  modelValue: String,
   label: String,
-  placeholder:String,
+  placeholder: String,
   prefix: String,
   suffix: String,
+  type: String,
 });
 </script>
 

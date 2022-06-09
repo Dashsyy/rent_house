@@ -10,11 +10,7 @@
 
 <script setup>
 import BaseLayout from "@/components/layout/BaseLayout.vue";
-import { reactive } from "@vue/reactivity";
 
-function handleClick(data){
-  console.log(data)
-}
 </script>
 
 <style>

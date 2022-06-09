@@ -5,6 +5,8 @@ import Radio from './radio';
 import Select from './select';
 import TableView from './table'
 import TextArea from './textarea'
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 const Components = {
   Button,
   DateTime,
@@ -12,7 +14,8 @@ const Components = {
   Radio,
   Select,
   TableView,
-  TextArea
+  TextArea,
+  Datepicker
 };
 
 const ComponentsInit = {

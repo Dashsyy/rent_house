@@ -3,11 +3,4 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-  }
-  html {
-    color:white;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
 }
