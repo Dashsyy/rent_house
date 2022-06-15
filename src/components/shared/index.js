@@ -5,7 +5,9 @@ import Radio from './radio';
 import Select from './select';
 import TableView from './table'
 import TextArea from './textarea'
+import Pagination from './pagination/pagination.vue'
 import Datepicker from '@vuepic/vue-datepicker';
+import CheckBox from './checkbox'
 import '@vuepic/vue-datepicker/dist/main.css'
 const Components = {
   Button,
@@ -15,7 +17,9 @@ const Components = {
   Select,
   TableView,
   TextArea,
-  Datepicker
+  Pagination,
+  Datepicker,
+  CheckBox
 };
 
 const ComponentsInit = {

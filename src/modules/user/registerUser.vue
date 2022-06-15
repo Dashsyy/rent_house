@@ -42,7 +42,7 @@
           <Input placeholder="Name" />
           <Input placeholder="Phone Number" />
           <div class="mt-5">
-          <hr>
+            <hr />
             <label class="text-2xl">You need to pay</label>
             <div class="w-1/2">
               <base-layout>

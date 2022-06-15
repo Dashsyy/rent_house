@@ -27,7 +27,6 @@
 </template>
 
 <script setup>
-const { computed } = require("@vue/runtime-core");
 const emit = defineEmits(["change", "update:modelValue"]);
 const props = defineProps({
   modelValue: String,
