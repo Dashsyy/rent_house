@@ -1,7 +1,7 @@
 const routes = [
     {
         path:'/reports',
-        name:"report_details",
+        name:"Reports",
         component: () => import('@modules/reports/reportDetail')
     }
 ]

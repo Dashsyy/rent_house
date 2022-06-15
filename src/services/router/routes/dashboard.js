@@ -1,7 +1,7 @@
 const routes = [
     {
         path: '/dashboard',
-        name: 'dashboard',
+        name: 'Dashboard',
         component:() => import('@modules/dashboard/DashboardIndex')
     }
 ]

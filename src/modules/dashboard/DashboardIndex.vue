@@ -38,8 +38,8 @@
         <!-- <TableView :items="[headerData, tableData]" /> -->
         <!-- <Pagination /> -->
         <div class="text-black">
-          <CheckBox :options="checkboxOption" v-model="data"/>
-          {{data}}
+          <CheckBox :options="checkboxOption" v-model="data" />
+          {{ data }}
         </div>
       </main>
       <div></div>
@@ -66,13 +66,10 @@ const tableData = reactive([
     room: "10",
     due_date: "13 September 2022",
   },
-  {
-    id: 2,
-    name: "Sunhour",
-    room: "11",
-    due_date: "13 September 2022",
-  },
 ]);
 const option = ref(["January", "Feburary", "Match", "Aprial"]);
-const checkboxOption = reactive([{name:'Option 1', value:"Option 1"},{name:'Option 2', value:"Option 2"}])
+const checkboxOption = reactive([
+  { name: "Option 1", value: "Option 1" },
+  { name: "Option 2", value: "Option 2" },
+]);
 </script>
