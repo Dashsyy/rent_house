@@ -1,7 +1,7 @@
 const routes = [
     {
         path: '/register-user',
-        name: 'register_user',
+        name: 'Register User',
         component:() => import('@modules/user/registerUser')
     }
 ]

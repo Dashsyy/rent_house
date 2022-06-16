@@ -14,10 +14,7 @@
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
                 <div v-for="(item, index) in navigation" :key="index">
-                  <router-link
-                    :to="item.href"
-                    @click="setSubHeader(item.name, index)"
-                  >
+                  <router-link :to="item.href">
                     <div
                       :class="[
                         item.current
@@ -37,7 +34,7 @@
       </div>
     </Disclosure>
     <main>
-      <SubHeader :title="data.routeName" />
+      <SubHeader :title="_headerName" />
       <slot></slot>
     </main>
   </div>
@@ -46,6 +43,8 @@
 <script setup>
 import { Disclosure } from "@headlessui/vue";
 import { reactive } from "@vue/reactivity";
+import { computed } from "@vue/runtime-core";
+import { useRoute } from "vue-router";
 import SubHeader from "./SubHeader.vue";
 
 const data = reactive({
@@ -57,16 +56,17 @@ const navigation = reactive([
   { name: "Reports", href: "/reports", current: false },
 ]);
 
-function setSubHeader(value, index) {
-  data.routeName = value;
+const _headerName = computed(() => {
+  const currentRouteName = useRoute().name;
   navigation.forEach((element) => {
-    if (element.name != value) {
+    if (element.name != currentRouteName) {
       element.current = false;
     }
-    if(element.name == value){
-      element.current = true
+    if (element.name == currentRouteName) {
+      element.current = true;
     }
   });
-}
+  return currentRouteName;
+});
 </script>
 

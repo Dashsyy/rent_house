@@ -1,31 +1,27 @@
 <template>
   <label :for="label">{{ label }}</label>
-  <select class="mx-2 bg-blue-900 p-1 rounded-md" :name="label" id="label">
+  <select
+    class="mx-2 p-1 px-3 py-2 rounded-md"
+    :name="label"
+    id="label"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  >
     <option value="" disabled selected>Select your option</option>
-    <!-- <option
-      v-for="item in option"
-      :key="item"
-      :value="item"
-      @click="handleClick(item)"
-    >
+    <option v-for="item in data" :key="item" :value="item">
       {{ item }}
-    </option> -->
+    </option>
   </select>
 </template>
 
 <script setup>
-const { reactive } = require("@vue/reactivity");
-const { computed } = require("@vue/runtime-core");
-
-const emit = defineEmits(["handleClick"]);
+const emit = defineEmits(["change", "update:modelValue"]);
 
 const dataProps = defineProps({
+  data: null,
+  modelValue: null,
   label: String,
-  data: Object,
 });
-function handleClick() {
-  emit("handleClick");
-}
 </script>
 
 <style>

@@ -2,14 +2,13 @@
   <base-layout>
     <template v-slot:main>
       <main class="p-5 text-white">
-        <label for="">
-          <h1>Components:</h1>
+        <label for="summary">
+          <h1 class="text-black">Components:</h1>
         </label>
-        <!-- <Button name="Submit" @handleSubmit="greeting" /> -->
-        <!-- <Button name="Danger" isDanger @handleSubmit="greeting" /> -->
-        <!-- <Button name="Disable" isDisable @handleSubmit="greeting" /> -->
-        <div class="grid grid-cols-12">
-          {{ data }}
+        <!-- <Button name="Submit" @handleSubmit="greeting" />
+        <Button name="Danger" isDanger @handleSubmit="greeting" />
+        <Button name="Disable" isDisable @handleSubmit="greeting" /> -->
+        <!-- <div class="grid grid-cols-12">
           <div class="col-span-1"></div>
           <div class="grid grid-rows-3 inline col-span-10">
             <Input
@@ -34,12 +33,11 @@
             />
           </div>
           <div class="col-span-1"></div>
-        </div>
+        </div> -->
         <!-- <Radio/> -->
-        <!-- <Select label="Select Option" v-model="option"/> -->
-        <!-- <TableView :items="[headerData, tableData]" /> -->
+        <TableView :items="[headerData, tableData]" />
+        <!-- <Pagination /> -->
       </main>
-      <div></div>
     </template>
   </base-layout>
 </template>
@@ -47,7 +45,7 @@
 <script setup>
 import BaseLayout from "@/components/layout/BaseLayout.vue";
 import { reactive, ref } from "@vue/reactivity";
-let data = ref("hello");
+let data = ref([]);
 const headerData = reactive([
   {
     id: "id",
@@ -63,12 +61,7 @@ const tableData = reactive([
     room: "10",
     due_date: "13 September 2022",
   },
-  {
-    id: 2,
-    name: "Sunhour",
-    room: "11",
-    due_date: "13 September 2022",
-  },
 ]);
-const option = reactive([1, 2, 3, 4]);
+const option = ref(["January", "Feburary", "Match", "Aprial"]);
+
 </script>

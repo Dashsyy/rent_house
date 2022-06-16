@@ -5,55 +5,95 @@
     <base-layout class="w-1/2">
       <template v-slot:main>
         <main class="px-[50px] pt-10 text-black">
-          <div class="mb-[100px]">
-            <h1>Basic Info</h1>
-            <Input placeholder="First Name" />
-            <Input placeholder="Last Name" />
-            <Input placeholder="Previous Address" />
-            <Input placeholder="Work Place" />
-            <Input placeholder="Phone Number" />
-            <div class="mt-10">
-              <div>Reference</div>
-              <Input placeholder="Personal Reference" />
-              <Input placeholder="Phone Number" />
+          <div class="mb-[50px]">
+            <h1 class="text-xl">Basic Info</h1>
+            <Input
+              v-model="data.basic_info.first_name"
+              placeholder="First Name"
+            />
+            <Input
+              Iv-model="data.basic_info.last_name"
+              placeholder="Last Name"
+            />
+            <Input
+              v-model="data.basic_info.previous_address"
+              placeholder="Previous Address"
+            />
+            <Input
+              v-model="data.basic_info.workPlace"
+              placeholder="Work Place"
+            />
+            <Input
+              v-model="data.basic_info.phoneNumber"
+              placeholder="Phone Number"
+            />
+            <div class="mt-10 mb-[50px]">
+              <div class="text-xl">Reference</div>
+              <Input
+                v-model="data.reference.name"
+                placeholder="Personal Reference"
+              />
+              <Input
+                v-model="data.reference.phoneNumber"
+                placeholder="Phone Number"
+              />
             </div>
-            <div class="mt-10">
-              <div>Medical condition</div>
-              **ask medical condition
-            </div>
+            <!-- <div class="mt-10">
+              <div class="text-xl">Medical condition</div>
+              <CheckBox v-model="data.medical_condition" :options="checkboxOption" />
+            </div> -->
           </div>
-          <div class="mb-[100px]">
-            <h1>Payment</h1>
-            <!-- <Radio>
-            <label for="discount" class="font-bold text-rose-600 italic"
-              >Discount rate: 15%</label
-            >
-          </Radio> -->
-            <Input placeholder="Number of people" type="number" />
-            <h1>Booked Paid</h1>
-            <p>**booked if user moving in more than 1 week</p>
-            <h1>Duration</h1>
-            <p>**How long user want to stay</p>
-            <h1>Moving In</h1>
-            <p>**When user want to moving duration max 2 weeks from now</p>
-          </div>
-          <Datepicker v-model="date" />
-          <h1>Received By</h1>
-          <Input placeholder="Name" />
-          <Input placeholder="Phone Number" />
-          <div class="mt-5">
-          <hr>
-            <label class="text-2xl">You need to pay</label>
-            <div class="w-1/2">
-              <base-layout>
+          <div class="mb-[50px]">
+            <h1 class="text-xl">Moving In</h1>
+            <Input
+              v-model="data.moving_in.number_of_people"
+              placeholder="Number of people"
+              type="number"
+            />
+            <div class="text-2xl">
+              Expect user moving in
+              <base-layout class="bg-[#1a53ff] text-white">
                 <template v-slot:main>
-                  <div class="text-white py-5 w-full bg-[#131925] rounded-md">
-                    <div class="p-5">
-                      <p class="text-6xl">$ 888</p>
-                    </div>
-                  </div>
+                  <p class="p-3">
+                    {{
+                      data.moving_in.date_moving_in
+                        ? data.moving_in.date_moving_in
+                        : "Not select yet"
+                    }}
+                  </p>
                 </template>
               </base-layout>
+            </div>
+            <div class="inline-block">
+              <Datepicker
+                v-model="data.moving_in.date_moving_in"
+                placeholder="Select Moving Date"
+                format="dd/MM/yyyy"
+                :minDate="new Date()"
+                autoApply
+              />
+            </div>
+          </div>
+          <h1 class="text-xl">Received By</h1>
+          <Input placeholder="Name" />
+          <Input placeholder="Phone Number" />
+          <div class="w-2/3 p-2">
+            <Datepicker
+              v-model="data.moving_in.date_moving_in"
+              placeholder="Receive the document"
+              format="dd/MM/yyyy"
+              :minDate="new Date()"
+              autoApply
+            />
+          </div>
+          <div class="border border-8 border-orange-500 rounded-md">
+            <div class="p-5">
+              <CardPreview label="You need to pay in dollar" total="10" />
+              <CardPreview
+                label="You need to pay in khmer riel"
+                total="10"
+                isKhmerRiel
+              />
             </div>
           </div>
           <div class="flex justify-center">
@@ -65,20 +105,42 @@
       </template>
     </base-layout>
   </div>
-  <!-- preview info -->
-  <!-- <div class="col-span-5">
-      <base-layout>
-      </base-layout>
-    </div> -->
-  <!-- </div> -->
 </template>
 
 <script setup>
 import BaseLayout from "@/components/layout/BaseLayout.vue";
-
-import { ref } from "vue";
+import { computed, reactive, ref } from "vue";
 
 const date = ref();
+const data = reactive({
+  basic_info: {
+    first_name: null,
+    last_name: null,
+    previous_address: null,
+    workPlace: null,
+    phoneNumber: null,
+  },
+  reference: {
+    name: null,
+    phoneNumber: null,
+  },
+  moving_in: {
+    number_of_people: null,
+    date_moving_in: null,
+  },
+  medical_condition: [],
+});
+const format = (date) => {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return ` ${day}/${month}/${year}`;
+};
+const checkboxOption = reactive([
+  { name: "Blood Pressure", value: "Blood Pressure" },
+  { name: "Stroke", value: "Stroke" },
+]);
 </script>
 
 <style>

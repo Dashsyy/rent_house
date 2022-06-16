@@ -1,7 +1,7 @@
 const routes = [
     {
         path: '/login',
-        name: 'login',
+        name: 'Login',
         component:() => import('@/components/layout/AuthLayout')
     }
 ]
