@@ -35,14 +35,9 @@
           <div class="col-span-1"></div>
         </div> -->
         <!-- <Radio/> -->
-        <!-- <TableView :items="[headerData, tableData]" /> -->
+        <TableView :items="[headerData, tableData]" />
         <!-- <Pagination /> -->
-        <div class="text-black">
-          <CheckBox :options="checkboxOption" v-model="data" />
-          {{ data }}
-        </div>
       </main>
-      <div></div>
     </template>
   </base-layout>
 </template>
@@ -68,8 +63,5 @@ const tableData = reactive([
   },
 ]);
 const option = ref(["January", "Feburary", "Match", "Aprial"]);
-const checkboxOption = reactive([
-  { name: "Option 1", value: "Option 1" },
-  { name: "Option 2", value: "Option 2" },
-]);
+
 </script>

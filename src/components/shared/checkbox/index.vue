@@ -1,8 +1,7 @@
 <template>
-  <h1>Yes</h1>
-  <div v-for="(data, index) in options" :key="index">
+  <div class="px-3" v-for="(data, index) in options" :key="index">
     <input type="checkbox" v-model="setValue" :value="data.value" />
-    <label :for="data.name">{{ data.name }}</label>
+    <label class="px-1" :for="data.name">{{ data.name }}</label>
   </div>
 </template>
 

@@ -5,55 +5,66 @@
     <base-layout class="w-1/2">
       <template v-slot:main>
         <main class="px-[50px] pt-10 text-black">
-          <div class="mb-[100px]">
-            <h1>Basic Info</h1>
-            <Input placeholder="First Name" />
-            <Input placeholder="Last Name" />
-            <Input placeholder="Previous Address" />
-            <Input placeholder="Work Place" />
-            <Input placeholder="Phone Number" />
+          <div class="mb-[50px]">
+            <h1 class="text-xl">Basic Info</h1>
+            <Input
+              v-model="data.basic_info.first_name"
+              placeholder="First Name"
+            />
+            <Input
+              v-model="data.basic_info.last_name"
+              placeholder="Last Name"
+            />
+            <Input
+              v-model="data.basic_info.previous_address"
+              placeholder="Previous Address"
+            />
+            <Input
+              v-model="data.basic_info.workPlace"
+              placeholder="Work Place"
+            />
+            <Input
+              v-model="data.basic_info.phoneNumber"
+              placeholder="Phone Number"
+            />
             <div class="mt-10">
-              <div>Reference</div>
-              <Input placeholder="Personal Reference" />
-              <Input placeholder="Phone Number" />
+              <div class="text-xl">Reference</div>
+              <Input v-model="data.reference.name" placeholder="Personal Reference" />
+              <Input v-model="data.reference.phoneNumber" placeholder="Phone Number" />
             </div>
             <div class="mt-10">
-              <div>Medical condition</div>
-              **ask medical condition
+              <div class="text-xl">Medical condition</div>
+              <CheckBox :options="checkboxOption" />
             </div>
           </div>
-          <div class="mb-[100px]">
-            <h1>Payment</h1>
-            <!-- <Radio>
-            <label for="discount" class="font-bold text-rose-600 italic"
-              >Discount rate: 15%</label
-            >
-          </Radio> -->
+          <!-- <div class="mb-[50px]">
+            <h1 class="text-xl">Payment</h1>
+            <Radio>
+              <label for="discount" class="font-bold text-rose-600 italic"
+                >Discount rate: 15%</label
+              >
+            </Radio>
             <Input placeholder="Number of people" type="number" />
-            <h1>Booked Paid</h1>
-            <p>**booked if user moving in more than 1 week</p>
-            <h1>Duration</h1>
-            <p>**How long user want to stay</p>
-            <h1>Moving In</h1>
-            <p>**When user want to moving duration max 2 weeks from now</p>
-          </div>
-          <Datepicker v-model="date" />
-          <h1>Received By</h1>
+            <h1 class="text-xl">Moving In</h1>
+            <div class="w-1/2 p-3">
+              <Datepicker v-model="date" placeholder="Select Moving Date" />
+            </div>
+          </div> -->
+          <h1 class="text-xl">Received By</h1>
           <Input placeholder="Name" />
           <Input placeholder="Phone Number" />
-          <div class="mt-5">
-            <hr />
-            <label class="text-2xl">You need to pay</label>
-            <div class="w-1/2">
-              <base-layout>
-                <template v-slot:main>
-                  <div class="text-white py-5 w-full bg-[#131925] rounded-md">
-                    <div class="p-5">
-                      <p class="text-6xl">$ 888</p>
-                    </div>
-                  </div>
-                </template>
-              </base-layout>
+          <div class="w-2/3 p-2">
+            <Datepicker v-model="date" placeholder="Receive the document" />
+          </div>
+          <div class="border border-8 border-orange-500 rounded-md">
+            <!-- <div class="w-full py-3 bg-[#030303]"></div> -->
+            <div class="p-5">
+              <CardPreview label="You need to pay in dollar" total="10" />
+              <CardPreview
+                label="You need to pay in khmer riel"
+                total="10"
+                isKhmerRiel
+              />
             </div>
           </div>
           <div class="flex justify-center">
@@ -75,10 +86,26 @@
 
 <script setup>
 import BaseLayout from "@/components/layout/BaseLayout.vue";
-
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 const date = ref();
+const data = reactive({
+  basic_info: {
+    first_name: null,
+    last_name: null,
+    previous_address: null,
+    workPlace: null,
+    phoneNumber: null,
+  },
+  reference: {
+    name: null,
+    phoneNumber: null,
+  },
+});
+const checkboxOption = reactive([
+  { name: "Blood Pressure", value: "Option 1" },
+  { name: "Stroke", value: "Stroke" },
+]);
 </script>
 
 <style>
