@@ -1,8 +1,8 @@
 <template>
-  <div class=" mx-[60px]">
+  <div class="mx-[60px]">
     <div
-      v-for="item in data"
-      :key="item"
+      v-for="(item, index) in data"
+      :key="index"
       class="
         flex flex-row
         justify-between
@@ -18,10 +18,14 @@
       "
     >
       <div>
-        <input type="radio" :value="item" class="scale-[1.5]" />
-        <label class="px-4">{{ item }}</label>
+        <input
+          type="radio"
+          :name="name"
+          :value="item.value"
+          class="scale-[1.5]"
+        />
+        <label class="px-4">{{ item.label }}</label>
       </div>
-      <div>100$/year</div>
     </div>
     <slot></slot>
   </div>
@@ -30,14 +34,12 @@
 <script setup>
 const { ref, reactive } = require("@vue/reactivity");
 
-const menu = reactive([
-  {
-    isBorder: true,
-    colorSelected: "#d5bbf8",
-    colorNotSelected: "#dddddd",
-  },
-]);
-const data = ref(["One month", "Two_Month"]);
+const props = defineProps({
+  data: null,
+  modelValue: null,
+  label: String,
+  name: String,
+});
 </script>
 
 <style>

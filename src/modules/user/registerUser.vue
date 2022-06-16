@@ -12,7 +12,7 @@
               placeholder="First Name"
             />
             <Input
-              v-model="data.basic_info.last_name"
+              Iv-model="data.basic_info.last_name"
               placeholder="Last Name"
             />
             <Input
@@ -27,37 +27,66 @@
               v-model="data.basic_info.phoneNumber"
               placeholder="Phone Number"
             />
-            <div class="mt-10">
+            <div class="mt-10 mb-[50px]">
               <div class="text-xl">Reference</div>
-              <Input v-model="data.reference.name" placeholder="Personal Reference" />
-              <Input v-model="data.reference.phoneNumber" placeholder="Phone Number" />
+              <Input
+                v-model="data.reference.name"
+                placeholder="Personal Reference"
+              />
+              <Input
+                v-model="data.reference.phoneNumber"
+                placeholder="Phone Number"
+              />
             </div>
-            <div class="mt-10">
+            <!-- <div class="mt-10">
               <div class="text-xl">Medical condition</div>
-              <CheckBox :options="checkboxOption" />
+              <CheckBox v-model="data.medical_condition" :options="checkboxOption" />
+            </div> -->
+          </div>
+          <div class="mb-[50px]">
+            <h1 class="text-xl">Moving In</h1>
+            <Input
+              v-model="data.moving_in.number_of_people"
+              placeholder="Number of people"
+              type="number"
+            />
+            <div class="text-2xl">
+              Expect user moving in
+              <base-layout class="bg-[#1a53ff] text-white">
+                <template v-slot:main>
+                  <p class="p-3">
+                    {{
+                      data.moving_in.date_moving_in
+                        ? data.moving_in.date_moving_in
+                        : "Not select yet"
+                    }}
+                  </p>
+                </template>
+              </base-layout>
+            </div>
+            <div class="inline-block">
+              <Datepicker
+                v-model="data.moving_in.date_moving_in"
+                placeholder="Select Moving Date"
+                format="dd/MM/yyyy"
+                :minDate="new Date()"
+                autoApply
+              />
             </div>
           </div>
-          <!-- <div class="mb-[50px]">
-            <h1 class="text-xl">Payment</h1>
-            <Radio>
-              <label for="discount" class="font-bold text-rose-600 italic"
-                >Discount rate: 15%</label
-              >
-            </Radio>
-            <Input placeholder="Number of people" type="number" />
-            <h1 class="text-xl">Moving In</h1>
-            <div class="w-1/2 p-3">
-              <Datepicker v-model="date" placeholder="Select Moving Date" />
-            </div>
-          </div> -->
           <h1 class="text-xl">Received By</h1>
           <Input placeholder="Name" />
           <Input placeholder="Phone Number" />
           <div class="w-2/3 p-2">
-            <Datepicker v-model="date" placeholder="Receive the document" />
+            <Datepicker
+              v-model="data.moving_in.date_moving_in"
+              placeholder="Receive the document"
+              format="dd/MM/yyyy"
+              :minDate="new Date()"
+              autoApply
+            />
           </div>
           <div class="border border-8 border-orange-500 rounded-md">
-            <!-- <div class="w-full py-3 bg-[#030303]"></div> -->
             <div class="p-5">
               <CardPreview label="You need to pay in dollar" total="10" />
               <CardPreview
@@ -76,17 +105,11 @@
       </template>
     </base-layout>
   </div>
-  <!-- preview info -->
-  <!-- <div class="col-span-5">
-      <base-layout>
-      </base-layout>
-    </div> -->
-  <!-- </div> -->
 </template>
 
 <script setup>
 import BaseLayout from "@/components/layout/BaseLayout.vue";
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 
 const date = ref();
 const data = reactive({
@@ -101,9 +124,21 @@ const data = reactive({
     name: null,
     phoneNumber: null,
   },
+  moving_in: {
+    number_of_people: null,
+    date_moving_in: null,
+  },
+  medical_condition: [],
 });
+const format = (date) => {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return ` ${day}/${month}/${year}`;
+};
 const checkboxOption = reactive([
-  { name: "Blood Pressure", value: "Option 1" },
+  { name: "Blood Pressure", value: "Blood Pressure" },
   { name: "Stroke", value: "Stroke" },
 ]);
 </script>
