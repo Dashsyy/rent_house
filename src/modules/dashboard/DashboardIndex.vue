@@ -1,42 +1,16 @@
 <template>
   <base-layout>
     <template v-slot:main>
-      <main class="p-5 text-white">
+      <main class="p-5">
         <label for="summary">
           <h1 class="text-black">Components:</h1>
         </label>
-        <!-- <Button name="Submit" @handleSubmit="greeting" />
-        <Button name="Danger" isDanger @handleSubmit="greeting" />
-        <Button name="Disable" isDisable @handleSubmit="greeting" /> -->
-        <!-- <div class="grid grid-cols-12">
-          <div class="col-span-1"></div>
-          <div class="grid grid-rows-3 inline col-span-10">
-            <Input
-              v-model="data"
-              label="Name"
-              placeholder="Name"
-              prefix="prefix"
-              suffix="suffix"
-            />
-            <Input
-              v-model="data"
-              label="Room"
-              placeholder="Room"
-              prefix="prefix"
-              suffix="suffix"
-            />
-            <Input
-              label="Due Date"
-              placeholder="Due Date"
-              prefix="prefix"
-              suffix="suffix"
-            />
-          </div>
-          <div class="col-span-1"></div>
-        </div> -->
-        <!-- <Radio/> -->
-        <TableView :items="[headerData, tableData]" />
-        <!-- <Pagination /> -->
+        <Dialog
+          title="Sucess"
+          content="You have sucessfully create new user"
+        />
+        <button class="bg-blue-300 px-5 rounded-md" @click="handleClick">Click</button>
+        <!-- <TableView :items="[headerData, tableData]" /> -->
       </main>
     </template>
   </base-layout>
@@ -45,7 +19,8 @@
 <script setup>
 import BaseLayout from "@/components/layout/BaseLayout.vue";
 import { reactive, ref } from "@vue/reactivity";
-let data = ref([]);
+import { computed } from "@vue/runtime-core";
+let isVisible = ref(null);
 const headerData = reactive([
   {
     id: "id",
@@ -63,5 +38,8 @@ const tableData = reactive([
   },
 ]);
 const option = ref(["January", "Feburary", "Match", "Aprial"]);
-
+function handleClick() {
+  isVisible = !isVisible;
+  console.log(isVisible)
+}
 </script>

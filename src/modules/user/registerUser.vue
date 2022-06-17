@@ -1,18 +1,16 @@
 <template>
-  <!-- <div class="grid grid-cols-12"> -->
-  <!-- input info -->
   <div class="col-span-7">
     <base-layout class="w-1/2">
       <template v-slot:main>
         <main class="px-[50px] pt-10 text-black">
-          <div class="mb-[50px]">
+          <div class="mb-[30px]">
             <h1 class="text-xl">Basic Info</h1>
             <Input
               v-model="data.basic_info.first_name"
               placeholder="First Name"
             />
             <Input
-              Iv-model="data.basic_info.last_name"
+              v-model="data.basic_info.last_name"
               placeholder="Last Name"
             />
             <Input
@@ -27,8 +25,8 @@
               v-model="data.basic_info.phoneNumber"
               placeholder="Phone Number"
             />
-            <div class="mt-10 mb-[50px]">
-              <div class="text-xl">Reference</div>
+            <div class="mt-[5px]">
+              <div class="text-lg indent-1">Reference</div>
               <Input
                 v-model="data.reference.name"
                 placeholder="Personal Reference"
@@ -38,10 +36,7 @@
                 placeholder="Phone Number"
               />
             </div>
-            <!-- <div class="mt-10">
-              <div class="text-xl">Medical condition</div>
-              <CheckBox v-model="data.medical_condition" :options="checkboxOption" />
-            </div> -->
+            <hr class="mt-[10px]" />
           </div>
           <div class="mb-[50px]">
             <h1 class="text-xl">Moving In</h1>
@@ -50,21 +45,7 @@
               placeholder="Number of people"
               type="number"
             />
-            <div class="text-2xl">
-              Expect user moving in
-              <base-layout class="bg-[#1a53ff] text-white">
-                <template v-slot:main>
-                  <p class="p-3">
-                    {{
-                      data.moving_in.date_moving_in
-                        ? data.moving_in.date_moving_in
-                        : "Not select yet"
-                    }}
-                  </p>
-                </template>
-              </base-layout>
-            </div>
-            <div class="inline-block">
+            <div class="inline-block px-3">
               <Datepicker
                 v-model="data.moving_in.date_moving_in"
                 placeholder="Select Moving Date"
@@ -73,30 +54,53 @@
                 autoApply
               />
             </div>
-          </div>
-          <h1 class="text-xl">Received By</h1>
-          <Input placeholder="Name" />
-          <Input placeholder="Phone Number" />
-          <div class="w-2/3 p-2">
-            <Datepicker
-              v-model="data.moving_in.date_moving_in"
-              placeholder="Receive the document"
-              format="dd/MM/yyyy"
-              :minDate="new Date()"
-              autoApply
-            />
-          </div>
-          <div class="border border-8 border-orange-500 rounded-md">
-            <div class="p-5">
-              <CardPreview label="You need to pay in dollar" total="10" />
-              <CardPreview
-                label="You need to pay in khmer riel"
-                total="10"
-                isKhmerRiel
-              />
+            <div
+              class="
+                px-3
+                underline underline-offset-1
+                decoration-4 decoration-sky-500
+              "
+            >
+              Moving In :
+              {{ data.moving_in.date_moving_in ?? "Not Select yet" }}
             </div>
           </div>
-          <div class="flex justify-center">
+          <div>
+            <h1 class="text-xl">Received By</h1>
+            <Input placeholder="Name" />
+            <Input placeholder="Phone Number" />
+            <div class="flex mx-3">
+              <div>Date:</div>
+              <div class="mx-5">
+                <Datepicker
+                  v-model="data.received_doc.date"
+                  placeholder="Receive the document"
+                  format="dd/MM/yyyy"
+                  :minDate="new Date()"
+                  autoApply
+                />
+              </div>
+            </div>
+          </div>
+          <Input v-model="data.price" placeholder="Charge Price" />
+          <div class="border border-8 border-orange-500 rounded-md">
+            <div class="grid md:grid-cols-1 xl:grid-cols-2 gap-3 p-5">
+              <div>
+                <CardPreview
+                  label="You need to pay in dollar"
+                  :total="_price ? _price : '...'"
+                />
+              </div>
+              <div>
+                <CardPreview
+                  label="You need to pay in khmer riel"
+                  :total="_price ? _price : '...'"
+                  isKhmerRiel
+                />
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center mt-5">
             <div>
               <Button name="Submit" />
             </div>
@@ -111,7 +115,6 @@
 import BaseLayout from "@/components/layout/BaseLayout.vue";
 import { computed, reactive, ref } from "vue";
 
-const date = ref();
 const data = reactive({
   basic_info: {
     first_name: null,
@@ -128,7 +131,10 @@ const data = reactive({
     number_of_people: null,
     date_moving_in: null,
   },
-  medical_condition: [],
+  received_doc: {
+    date: null,
+  },
+  price: null,
 });
 const format = (date) => {
   const day = date.getDate();
@@ -137,10 +143,9 @@ const format = (date) => {
 
   return ` ${day}/${month}/${year}`;
 };
-const checkboxOption = reactive([
-  { name: "Blood Pressure", value: "Blood Pressure" },
-  { name: "Stroke", value: "Stroke" },
-]);
+const _price = computed(() => {
+  return data.price;
+});
 </script>
 
 <style>
