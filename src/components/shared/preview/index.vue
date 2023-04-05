@@ -1,6 +1,8 @@
 <template>
   <div class="mt-5">
-    <label class="text-2xl">{{ label }}</label>
+    <div class="min-h-[100px] border">
+      <label class="text-2xl border">{{ label }}</label>
+    </div>
     <div>
       <base-layout>
         <template v-slot:main>
@@ -32,7 +34,7 @@ const currencyType = computed(() => {
   let tempTotal = null;
   if (props.isKhmerRiel) {
     tempTotal = parseInt(props.total) * 4100;
-    return "៛ " + tempTotal;
+    return tempTotal ? "៛ " + tempTotal : "៛ " + props.total;
   } else {
     return "$ " + props.total;
   }

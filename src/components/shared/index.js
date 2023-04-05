@@ -9,6 +9,7 @@ import Pagination from './pagination/pagination.vue'
 import Datepicker from '@vuepic/vue-datepicker';
 import CheckBox from './checkbox';
 import CardPreview from './preview'
+import Dialog from './dialog'
 import '@vuepic/vue-datepicker/dist/main.css'
 const Components = {
   Button,
@@ -21,7 +22,8 @@ const Components = {
   Pagination,
   Datepicker,
   CheckBox,
-  CardPreview
+  CardPreview,
+  Dialog
 };
 
 const ComponentsInit = {
